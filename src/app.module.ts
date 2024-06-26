@@ -7,8 +7,9 @@ import { AlumnosModule } from './alumnos/alumnos.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(), // Carga variables de entorno desde el archivo .env
-    MongooseModule.forRoot(process.env.MONGODB_URI), // Usa la variable de entorno MONGODB_URI
+    ConfigModule.forRoot({
+      isGlobal: true, 
+    }),    MongooseModule.forRoot(process.env.MONGODB_URI),
     RegistrosModule,
     DocentesModule,
     AlumnosModule,
