@@ -18,14 +18,15 @@ export class RegistrosService {
   async findAll(): Promise<Registro[]> {
     return this.registroModel.find().exec();
   }
+
     //Para ver los registros por id
   // async findOne(id: string): Promise<Registro> {
   //   return this.registroModel.findById(id).exec();
   // }
       //Para ver los registros por matricula de alumno
-  async findManyByMatricula(alumno_matricula: string): Promise<Registro[]> {
-    return this.registroModel.find({ alumno_matricula }).exec();
-  }
+    async findManyByMatricula(alumno_matricula: string): Promise<Registro[]> {
+      return this.registroModel.find({ alumno_matricula }).exec();
+    }
 
 
     //Actualizar por id
