@@ -19,13 +19,15 @@ export class RegistrosService {
     return this.registroModel.find().exec();
   }
     //Para ver los registros por id
-  async findOne(id: string): Promise<Registro> {
-    return this.registroModel.findById(id).exec();
+  // async findOne(id: string): Promise<Registro> {
+  //   return this.registroModel.findById(id).exec();
+  // }
+      //Para ver los registros por matricula de alumno
+  async findManyByMatricula(alumno_matricula: string): Promise<Registro[]> {
+    return this.registroModel.find({ alumno_matricula }).exec();
   }
-//     //Para ver los registros por matricula de alumno
-//   async findOneByMatricula(alumno_matricula: string): Promise<Registro> {
-//     return this.registroModel.findOne({ alumno_matricula }).exec();
-//   }
+
+
     //Actualizar por id
   async update(id: string, updateRegistroDto: UpdateRegistroDto): Promise<Registro> {
     return this.registroModel.findByIdAndUpdate(id, updateRegistroDto, { new: true }).exec();
