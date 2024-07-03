@@ -21,9 +21,13 @@ export class DocentesController {
     return this.docentesService.findAll();
   }
 
-  @Get(':matricula')
-  findOne(@Param('matricula') matricula: string) {
-    return this.docentesService.findOne(matricula);
+  // Endpoint para obtener todos los docentes por matricula
+  @Get('mat')
+  findOneByMatricula(
+    @Query('matricula') matricula: string,
+
+   ): Promise<Docente> {
+    return this.docentesService.findOneByMatricula(matricula);
   }
 
   // Método para obtener un docente por matrícula y password
