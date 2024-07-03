@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, Query  } from '@nestjs/common';
 import { DocentesService } from './docentes.service';
 import { CreateDocenteDto } from './dto/create-docente.dto';
 import { UpdateDocenteDto } from './dto/update-docente.dto';
@@ -21,10 +21,13 @@ export class DocentesController {
     return this.docentesService.findAll();
   }
 
-  // Endpoint para obtener un docente por matrícula
-  @Get(':matricula')
-  findOne(@Param('matricula') matricula: string): Promise<Docente> {
-    return this.docentesService.findOne(matricula); 
+  // Método para obtener un docente por matrícula y password
+  @Get('buscar')
+  findByMatriculaAndPassword(
+    @Query('matricula') matricula: string,
+    @Query('password') password: string
+  ): Promise<Docente | null> {
+    return this.docentesService.findByMatriculaAndPassword(matricula, password);
   }
 
   // Endpoint para actualizar un docente por ID

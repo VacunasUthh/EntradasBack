@@ -21,9 +21,9 @@ export class DocentesService {
     return this.docenteModel.find().exec(); 
   }
 
-  // Método para encontrar un docente por su matrícula
-  async findOne(matricula: string): Promise<Docente> {
-    return this.docenteModel.findOne({ matricula }).exec();
+  // Método para encontrar un docente por su matrícula y contraseña
+  async findByMatriculaAndPassword(matricula: string, password: string): Promise<Docente | null> {
+    return this.docenteModel.findOne({ matricula, password }).exec();
   }
 
   // Método para actualizar un docente por su ID
