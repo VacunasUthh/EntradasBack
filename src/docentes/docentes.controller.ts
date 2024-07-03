@@ -21,6 +21,11 @@ export class DocentesController {
     return this.docentesService.findAll();
   }
 
+  @Get(':matricula')
+  findOne(@Param('matricula') matricula: string) {
+    return this.docentesService.findOne(matricula);
+  }
+
   // Método para obtener un docente por matrícula y password
   @Get('buscar')
   findByMatriculaAndPassword(
