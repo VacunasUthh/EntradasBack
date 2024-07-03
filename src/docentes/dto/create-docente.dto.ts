@@ -16,6 +16,7 @@ export class CreateAlumnoDto {
 // DTO para definir la estructura de un docente al crearlo
 export class CreateDocenteDto {
   matricula: string; // Matrícula del docente
+  password: string; //Contraseña del doncente
   nombre: string;    // Nombre del docente
   apellido_paterno: string; // Apellido paterno del docente
   apellido_materno: string; // Apellido materno del docente
