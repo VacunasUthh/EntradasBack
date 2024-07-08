@@ -40,9 +40,9 @@ export class DocentesController {
   }
 
   // Endpoint para actualizar un docente por ID
-  @Put(':id')
-  update(@Param('id') id: string, @Body() updateDocenteDto: UpdateDocenteDto): Promise<Docente> {
-    return this.docentesService.update(id, updateDocenteDto);
+  @Put('actualizar/:id')
+  async update(@Param('id') id: string, @Body() updateDocenteDto: UpdateDocenteDto): Promise<Docente> {
+    return this.docentesService.updateByMatricula(id, updateDocenteDto);
   }
 
   // Endpoint para eliminar un docente por ID

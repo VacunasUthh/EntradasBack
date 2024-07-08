@@ -31,8 +31,8 @@ export class DocentesService {
   }
 
   // Método para actualizar un docente por su ID
-  async update(id: string, updateDocenteDto: UpdateDocenteDto): Promise<Docente> {
-    return this.docenteModel.findByIdAndUpdate(id, updateDocenteDto, { new: true }).exec(); 
+  async updateByMatricula(matricula: string, updateDocenteDto: UpdateDocenteDto): Promise<Docente> {
+    return this.docenteModel.findByIdAndUpdate(matricula, updateDocenteDto, { new: true }).exec(); 
   }
 
   // Método para eliminar un docente por su ID
