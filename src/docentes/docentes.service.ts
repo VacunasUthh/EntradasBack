@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateDocenteDto } from './dto/create-docente.dto';
@@ -30,10 +30,36 @@ export class DocentesService {
     return this.docenteModel.findOne({ matricula }).exec();
   }
 
-  // Método para actualizar un docente por su ID
+  // Método para actualizar un docente por su matrícula
   async updateByMatricula(matricula: string, updateDocenteDto: UpdateDocenteDto): Promise<Docente> {
-    return this.docenteModel.findByIdAndUpdate(matricula, updateDocenteDto, { new: true }).exec(); 
+    const updatedDocente = await this.docenteModel.findOneAndUpdate(
+      { matricula },
+      { $set: updateDocenteDto },
+      { new: true, useFindAndModify: false },
+    ).exec();
+
+    if (!updatedDocente) {
+      throw new NotFoundException(`Docente con matrícula ${matricula} no encontrado`);
+    }
+
+    return updatedDocente;
   }
+
+
+ // Método para eañadir alumnos a los docentes por medio de su matrícula
+ async addAlumnoByMatricula(matricula: string, alumno: any): Promise<Docente> {
+  const updatedDocente = await this.docenteModel.findOneAndUpdate(
+    { matricula },
+    { $push: { alumnos: alumno } },
+    { new: true, useFindAndModify: false },
+  ).exec();
+
+  if (!updatedDocente) {
+    throw new NotFoundException(`Docente con matrícula ${matricula} no encontrado`);
+  }
+
+  return updatedDocente;
+}
 
   // Método para eliminar un docente por su ID
   async remove(id: string): Promise<Docente> {

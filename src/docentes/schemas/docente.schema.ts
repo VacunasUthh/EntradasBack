@@ -32,11 +32,11 @@ export class Alumno {
   horario: Horario;
 }
 
-export const AlumnoSchema = SchemaFactory.createForClass(Alumno);
+export const DocentesSchema = SchemaFactory.createForClass(Alumno);
 
 @Schema()
 export class Docente {
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   matricula: string;
 
   @Prop({ required: true })
@@ -57,7 +57,7 @@ export class Docente {
   @Prop({ required: true })
   correo: string;
 
-  @Prop({ type: [AlumnoSchema], required: true })
+  @Prop({ type: [DocentesSchema], required: true })
   alumnos: Alumno[];
 }
 

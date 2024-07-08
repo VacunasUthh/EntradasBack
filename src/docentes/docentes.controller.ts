@@ -39,10 +39,16 @@ export class DocentesController {
     return this.docentesService.findByMatriculaAndPassword(matricula, password);
   }
 
-  // Endpoint para actualizar un docente por matrícula
-  @Put('actualizar/:id')
-  async update(@Param('id') id: string, @Body() updateDocenteDto: UpdateDocenteDto): Promise<Docente> {
-    return this.docentesService.updateByMatricula(id, updateDocenteDto);
+   // Endpoint para actualizar un docente por matrícula
+   @Put('actualizar/:matricula')
+   async update(@Param('matricula') matricula: string, @Body() updateDocenteDto: UpdateDocenteDto): Promise<Docente> {
+     return this.docentesService.updateByMatricula(matricula, updateDocenteDto);
+   }
+
+   // Endpoint para agregar un alumno a un docente por matrícula
+  @Put('add-alumno/:matricula')
+  async addAlumno(@Param('matricula') matricula: string, @Body() alumno: any): Promise<Docente> {
+    return this.docentesService.addAlumnoByMatricula(matricula, alumno);
   }
 
 
