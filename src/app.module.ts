@@ -1,8 +1,9 @@
-import { Module} from '@nestjs/common';
+import { Module,  MiddlewareConsumer, NestModule, RequestMethod} from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RegistrosModule } from './registros/registros.module';
 import { DocentesModule } from './docentes/docentes.module';
 import { AlumnosModule } from './alumnos/alumnos.module';
+import { CorsMiddleware } from './cors.middleware';
 
 
 @Module({
@@ -13,4 +14,10 @@ import { AlumnosModule } from './alumnos/alumnos.module';
     AlumnosModule,
   ]
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(CorsMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}
