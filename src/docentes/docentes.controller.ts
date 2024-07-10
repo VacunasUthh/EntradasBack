@@ -52,6 +52,25 @@ export class DocentesController {
   }
 
 
+  // Endpoint para actualizar el horario de un alumno por la matrícula del docente y la matrícula del alumno
+  @Put('update-horario/:matricula/:alumnoMatricula')
+  async updateHorario(
+    @Param('matricula') matricula: string,
+    @Param('alumnoMatricula') alumnoMatricula: string,
+    @Body() horario: any
+  ): Promise<Docente> {
+    return this.docentesService.updateHorarioByMatricula(matricula, alumnoMatricula, horario);
+  }
+
+  // Endpoint para actualizar los horario de los alumnos por la matrícula del docente y la matrícula del alumno
+  @Put('update-multiple-horarios/:matricula')
+  async updateMultipleHorarios(
+    @Param('matricula') matricula: string,
+    @Body() alumnos: { alumnoMatricula: string, horario: any }[]
+  ): Promise<Docente> {
+    return this.docentesService.updateMultipleHorarios(matricula, alumnos);
+  }
+
   
   // Endpoint para eliminar un docente por ID
   @Delete(':id')

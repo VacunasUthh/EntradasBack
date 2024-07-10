@@ -61,6 +61,55 @@ export class DocentesService {
   return updatedDocente;
 }
 
+ // Actualizar el horario de un alumno específico por matrícula
+ async updateHorarioByMatricula(matricula: string, alumnoMatricula: string, horario: any): Promise<Docente> {
+  const docente = await this.docenteModel.findOne({ matricula }).exec();
+
+  if (!docente) {
+    throw new NotFoundException(`Docente con matrícula ${matricula} no encontrado`);
+  }
+
+  const alumno = docente.alumnos.find(alumno => alumno.matricula === alumnoMatricula);
+
+  if (!alumno) {
+    throw new NotFoundException(`Alumno con matrícula ${alumnoMatricula} no encontrado`);
+  }
+
+  // Actualizar el horario del alumno
+  alumno.horario = horario;
+
+  // Guardar los cambios
+  await docente.save();
+
+  return docente;
+}
+
+// Actualizar el horario de multiples alumnos por su matrícula
+async updateMultipleHorarios(matricula: string, alumnos: { alumnoMatricula: string, horario: any }[]): Promise<Docente> {
+  const docente = await this.docenteModel.findOne({ matricula }).exec();
+
+  if (!docente) {
+    throw new NotFoundException(`Docente con matrícula ${matricula} no encontrado`);
+  }
+
+  alumnos.forEach(({ alumnoMatricula, horario }) => {
+    const alumno = docente.alumnos.find(alumno => alumno.matricula === alumnoMatricula);
+
+    if (alumno) {
+      // Actualizar el horario del alumno
+      alumno.horario = horario;
+    } else {
+      throw new NotFoundException(`Alumno con matrícula ${alumnoMatricula} no encontrado`);
+    }
+  });
+
+  // Guardar los cambios
+  await docente.save();
+
+  return docente;
+}
+
+
   // Método para eliminar un docente por su ID
   async remove(id: string): Promise<Docente> {
     return this.docenteModel.findByIdAndDelete(id).exec();
