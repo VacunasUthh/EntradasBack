@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, Query } from '@nestjs/common';
 import { RegistrosService } from './registros.service';
 import { CreateRegistroDto } from './dto/create-registro.dto';
 import { UpdateRegistroDto } from './dto/update-registro.dto';
@@ -23,9 +23,23 @@ export class RegistrosController {
     //   return this.registrosService.findOne(id);
     // }
 
-  @Get(':alumno_matricula')
-  findManyByMatricula(@Param('alumno_matricula') alumno_matricula: string): Promise<Registro[]> {
+  // @Get(':alumno_matricula')
+  // findManyByMatricula(@Param('alumno_matricula') alumno_matricula: string): Promise<Registro[]> {
+  //   return this.registrosService.findManyByMatricula(alumno_matricula);
+  // }
+
+  @Get('BuscarMat')
+  findManyByMatricula(
+    @Query('matricula') alumno_matricula: string,): Promise<Registro[]> {
     return this.registrosService.findManyByMatricula(alumno_matricula);
+  }
+
+  @Get('buscarRegistros')
+  findByMatriculaAndDate(
+    @Query('matricula') alumno_matricula: string,
+    @Query('fecha') fecha: string
+  ): Promise<Registro[]> {
+    return this.registrosService.findByMatriculaAndDate(alumno_matricula, fecha);
   }
 
 

@@ -28,6 +28,23 @@ export class RegistrosService {
       return this.registroModel.find({ alumno_matricula }).exec();
     }
 
+    async findByMatriculaAndDate(alumno_matricula: string, fecha: string): Promise<Registro[]> {
+      console.log(`Buscando registros para matrícula ${alumno_matricula} y fecha ${fecha}`);
+
+      const startOfDay = new Date(fecha);
+      startOfDay.setUTCHours(0, 0, 0, 0);
+      
+      const endOfDay = new Date(fecha);
+      endOfDay.setUTCHours(23, 59, 59, 999);
+  
+      return this.registroModel.find({
+        alumno_matricula,
+        fecha: {
+          $gte: startOfDay,
+          $lte: endOfDay,
+        },
+      }).exec();
+    }
 
     //Actualizar por id
   async update(id: string, updateRegistroDto: UpdateRegistroDto): Promise<Registro> {
