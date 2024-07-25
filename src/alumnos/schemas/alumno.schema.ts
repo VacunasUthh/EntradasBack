@@ -63,8 +63,11 @@ export const ContactoEmergenciaSchema = SchemaFactory.createForClass(ContactoEme
 
 @Schema()
 export class Alumno {
-  @Prop({ required: true })
+  @Prop({ required: true , unique: true})
   matricula: string;
+
+  @Prop({ required: true })
+  password: string;
 
   @Prop({ required: true })
   correo: string;

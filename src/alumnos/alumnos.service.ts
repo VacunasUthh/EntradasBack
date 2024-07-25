@@ -22,8 +22,14 @@ export class AlumnosService {
   }
 
   // Método para encontrar un alumno por su matrícula
-  async findOne(matricula: string): Promise<Alumno> {
-    return this.alumnoModel.findOne({ matricula }).exec(); // Busca un alumno por el campo matrícula
+  async findOneByMatricula(matricula: string): Promise<Alumno> {
+    return this.alumnoModel.findOne({ matricula }).exec();
+  }
+
+
+  // Método para encontrar un alumno por su matrícula y contraseña
+  async findByMatriculaAndPassword(matricula: string, password: string): Promise<Alumno | null> {
+    return this.alumnoModel.findOne({ matricula, password }).exec();
   }
 
   // Método para actualizar un alumno por su ID

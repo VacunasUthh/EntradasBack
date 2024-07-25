@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, Query } from '@nestjs/common';
 import { AlumnosService } from './alumnos.service';
 import { CreateAlumnoDto } from './dto/create-alumno.dto';
 import { UpdateAlumnoDto } from './dto/update-alumno.dto';
@@ -22,9 +22,21 @@ export class AlumnosController {
   }
 
   // Endpoint para obtener un alumno por matrícula
-  @Get(':matricula')
-  findOne(@Param('matricula') matricula: string): Promise<Alumno> {
-    return this.alumnosService.findOne(matricula); 
+  @Get('mat')
+  findOneByMatricula(
+    @Query('matricula') matricula: string,
+
+   ): Promise<Alumno> {
+    return this.alumnosService.findOneByMatricula(matricula);
+  }
+
+  // Endpoint para obtener un alumno por matrícula y contraseña
+  @Get('buscar')
+  findByMatriculaAndPassword(
+    @Query('matricula') matricula: string,
+    @Query('password') password: string
+  ): Promise<Alumno | null> {
+    return this.alumnosService.findByMatriculaAndPassword(matricula, password);
   }
 
   // Endpoint para actualizar un alumno por ID

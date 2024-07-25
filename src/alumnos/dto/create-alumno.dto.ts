@@ -27,6 +27,7 @@ export class CreateDomicilioDto {
   // DTO para definir la estructura de un alumno al crearlo
   export class CreateAlumnoDto {
     matricula: string;
+    password: string;
     correo: string;
     telefono: string;
     nombre: string;
