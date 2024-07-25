@@ -17,8 +17,11 @@ export class Registro {
   @Prop({ required: true })
   hora: string;
 
-  @Prop({ required: true })
-  ubicacion: string;
+  @Prop({ required: true, type: { latitud: String, longitud: String } })
+  ubicacion: {
+    latitud: string;
+    longitud: string;
+  };
 }
 
 export const RegistroSchema = SchemaFactory.createForClass(Registro);
