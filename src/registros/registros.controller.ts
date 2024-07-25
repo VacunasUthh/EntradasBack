@@ -8,7 +8,7 @@ import { Registro } from './schemas/registro.schema';
 export class RegistrosController {
   constructor(private readonly registrosService: RegistrosService) {}
 
-  @Post()
+  @Post('agregar') // Ruta personalizada para agregar registros
   create(@Body() createRegistroDto: CreateRegistroDto): Promise<Registro> {
     return this.registrosService.create(createRegistroDto);
   }
