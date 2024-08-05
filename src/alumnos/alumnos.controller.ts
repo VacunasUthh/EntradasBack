@@ -10,7 +10,7 @@ export class AlumnosController {
   constructor(private readonly alumnosService: AlumnosService) {}
 
   // Endpoint para agregar un nuevo alumno a la base de datos
-  @Post()
+  @Post('agregar')
   create(@Body() createAlumnoDto: CreateAlumnoDto): Promise<Alumno> {
     return this.alumnosService.create(createAlumnoDto); 
   }
