@@ -27,19 +27,7 @@ export class Domicilio {
 
 export const DomicilioSchema = SchemaFactory.createForClass(Domicilio);
 
-@Schema()
-export class Horario {
-  @Prop({ required: true })
-  entrada: string;
 
-  @Prop({ required: true })
-  receso: number;
-
-  @Prop({ required: true })
-  salida: string;
-}
-
-export const HorarioSchema = SchemaFactory.createForClass(Horario);
 
 @Schema()
 export class ContactoEmergencia {
@@ -88,7 +76,7 @@ export class Alumno {
   carrera: string;
 
   @Prop({ required: true })
-  fotografia: string;
+  huella_digital: string;
 
   @Prop({ type: DomicilioSchema, required: true })
   domicilio: Domicilio;
@@ -96,11 +84,6 @@ export class Alumno {
   @Prop({ required: true })
   docente_matricula: string;
 
-  @Prop({ required: true })
-  proyecto_asignado: string;
-
-  @Prop({ type: HorarioSchema, required: true })
-  horario: Horario;
 
   @Prop({ type: ContactoEmergenciaSchema, required: true })
   contacto_emergencia: ContactoEmergencia;

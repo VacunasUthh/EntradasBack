@@ -28,16 +28,15 @@ export class CreateDomicilioDto {
   export class CreateAlumnoDto {
     matricula: string;
     password: string;
+    huella_digital: string;
     correo: string;
     telefono: string;
     nombre: string;
     apellido_paterno: string;
     apellido_materno: string;
     carrera: string;
-    fotografia: string;
     domicilio: CreateDomicilioDto;
     docente_matricula: string;
-    proyecto_asignado: string;
     horario: CreateHorarioDto;
     contacto_emergencia: CreateContactoEmergenciaDto;
   }
