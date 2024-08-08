@@ -28,7 +28,6 @@ export class CreateDomicilioDto {
   export class CreateAlumnoDto {
     matricula: string;
     password: string;
-    huella_digital: string;
     correo: string;
     telefono: string;
     nombre: string;
@@ -39,5 +38,6 @@ export class CreateDomicilioDto {
     docente_matricula: string;
     horario: CreateHorarioDto;
     contacto_emergencia: CreateContactoEmergenciaDto;
+    deviceUUID: string;
   }
   

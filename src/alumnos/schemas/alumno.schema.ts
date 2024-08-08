@@ -75,8 +75,6 @@ export class Alumno {
   @Prop({ required: true })
   carrera: string;
 
-  @Prop({ required: true })
-  huella_digital: string;
 
   @Prop({ type: DomicilioSchema, required: true })
   domicilio: Domicilio;
@@ -87,6 +85,9 @@ export class Alumno {
 
   @Prop({ type: ContactoEmergenciaSchema, required: true })
   contacto_emergencia: ContactoEmergencia;
+
+  @Prop({ required: true, unique: true }) 
+  deviceUUID: string;
 }
 
 export const AlumnoSchema = SchemaFactory.createForClass(Alumno);
