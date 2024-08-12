@@ -31,6 +31,11 @@ export class AlumnosService {
     return { exists: !!alumno };
   }
 
+  // Método para verificar si el diospositivo y el usuario coinciden
+  async validateUser(matricula: string, password: string, deviceUUID: string): Promise<boolean> {
+    const alumno = await this.alumnoModel.findOne({ matricula, password, deviceUUID }).exec();
+    return !!alumno;
+  }
 
   // Método para encontrar un alumno por su matrícula y contraseña
   async findByMatriculaAndPassword(matricula: string, password: string): Promise<Alumno | null> {

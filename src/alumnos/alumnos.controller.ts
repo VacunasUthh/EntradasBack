@@ -47,6 +47,17 @@ export class AlumnosController {
     return this.alumnosService.checkUUID(deviceUUID);
   }
 
+  // Endpoint para validar si el diospositivo y el usuario coinciden
+  @Get('validar')
+  async validateUser(
+    @Query('matricula') matricula: string,
+    @Query('password') password: string,
+    @Query('deviceUUID') deviceUUID: string
+  ): Promise<{ valid: boolean }> {
+    const valid = await this.alumnosService.validateUser(matricula, password, deviceUUID);
+    return { valid };
+  }
+
   // Endpoint para actualizar un alumno por ID
   @Put(':id')
   update(@Param('id') id: string, @Body() updateAlumnoDto: UpdateAlumnoDto): Promise<Alumno> {
