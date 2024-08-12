@@ -39,6 +39,14 @@ export class AlumnosController {
     return this.alumnosService.findByMatriculaAndPassword(matricula, password);
   }
 
+  // Endpoint para verificar si el diospositivo ya registro a un usuariuo anteriormente
+  @Get('check-uuid')
+  checkUUID(
+    @Query('deviceUUID') deviceUUID: string):
+   Promise<{ exists: boolean }> {
+    return this.alumnosService.checkUUID(deviceUUID);
+  }
+
   // Endpoint para actualizar un alumno por ID
   @Put(':id')
   update(@Param('id') id: string, @Body() updateAlumnoDto: UpdateAlumnoDto): Promise<Alumno> {

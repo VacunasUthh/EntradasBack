@@ -25,6 +25,11 @@ export class AlumnosService {
   async findOneByMatricula(matricula: string): Promise<Alumno> {
     return this.alumnoModel.findOne({ matricula }).exec();
   }
+  // Método para verificar si el diospositivo ya registro a un usuariuo anteriormente
+  async checkUUID(deviceUUID: string): Promise<{ exists: boolean }> {
+    const alumno = await this.alumnoModel.findOne({ deviceUUID }).exec();
+    return { exists: !!alumno };
+  }
 
 
   // Método para encontrar un alumno por su matrícula y contraseña

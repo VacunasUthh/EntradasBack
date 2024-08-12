@@ -18,16 +18,6 @@ export class RegistrosController {
     return this.registrosService.findAll();
   }
 
-    // @Get(':id')
-    // findOne(@Param('id') id: string): Promise<Registro> {
-    //   return this.registrosService.findOne(id);
-    // }
-
-  // @Get(':alumno_matricula')
-  // findManyByMatricula(@Param('alumno_matricula') alumno_matricula: string): Promise<Registro[]> {
-  //   return this.registrosService.findManyByMatricula(alumno_matricula);
-  // }
-
   @Get('BuscarMat')
   findManyByMatricula(
     @Query('matricula') alumno_matricula: string,): Promise<Registro[]> {
