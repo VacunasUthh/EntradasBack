@@ -79,9 +79,6 @@ export class Alumno {
   @Prop({ type: DomicilioSchema, required: true })
   domicilio: Domicilio;
 
-  @Prop({ required: true })
-  docente_matricula: string;
-
 
   @Prop({ type: ContactoEmergenciaSchema, required: true })
   contacto_emergencia: ContactoEmergencia;

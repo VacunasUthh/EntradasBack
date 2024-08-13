@@ -35,7 +35,6 @@ export class CreateDomicilioDto {
     apellido_materno: string;
     carrera: string;
     domicilio: CreateDomicilioDto;
-    docente_matricula: string;
     horario: CreateHorarioDto;
     contacto_emergencia: CreateContactoEmergenciaDto;
     deviceUUID: string;
