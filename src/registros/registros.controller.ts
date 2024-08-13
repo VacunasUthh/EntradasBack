@@ -32,6 +32,16 @@ export class RegistrosController {
     return this.registrosService.findByMatriculaAndDate(alumno_matricula, fecha);
   }
 
+  @Get('buscarRegistrosPorMes')
+  findByMatriculaAndMonth(
+    @Query('matricula') alumno_matricula: string,
+    @Query('mes') mes: number,
+    @Query('anio') anio: number
+  ): Promise<Registro[]> {
+    return this.registrosService.findByMatriculaAndMonth(alumno_matricula, mes, anio);
+  }
+
+
 
   @Put(':id')
   update(@Param('id') id: string, @Body() updateRegistroDto: UpdateRegistroDto): Promise<Registro> {
