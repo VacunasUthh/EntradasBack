@@ -8,14 +8,14 @@ import { CorsMiddleware } from './cors.middleware';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://Admin_1:CuXJllRmrroLBNHy@estadia.80d1l.mongodb.net/?retryWrites=true&w=majority&appName=Estadia'),
+    MongooseModule.forRoot('mongodb+srv://Admin_1:CuXJllRmrroLBNHy@estadia.80d1l.mongodb.net/RegistroAsistencias?retryWrites=true&w=majority&appName=Estadia'),
     RegistrosModule,
     DocentesModule,
     AlumnosModule,
   ]
 })
 export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
+  configure(consumer: MiddlewareConsumer) { 
     consumer
       .apply(CorsMiddleware)
       .forRoutes({ path: '*', method: RequestMethod.ALL });
