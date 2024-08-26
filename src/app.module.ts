@@ -8,7 +8,7 @@ import { CorsMiddleware } from './cors.middleware';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://Carlos:20221021@estadia.qahyork.mongodb.net/RegistroAsistencias?retryWrites=true&w=majority&appName=Estadia'),
+    MongooseModule.forRoot('mongodb+srv://Admin_1:CuXJllRmrroLBNHy@estadia.qahyork.mongodb.net/RegistroAsistencias?retryWrites=true&w=majority&appName=Estadia'),
     RegistrosModule,
     DocentesModule,
     AlumnosModule,
